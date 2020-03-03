@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2873230645
+    locked: 0
+  - name: Water
+    uniqueID: 1574732349
+    locked: 0
+  - name: Houses
+    uniqueID: 2081706201
+    locked: 0
+  - name: PlayerHouse
+    uniqueID: 2237762427
+    locked: 0
+  - name: OuterWall
+    uniqueID: 2292721353
+    locked: 0
+  - name: MC
+    uniqueID: 1854820387
+    locked: 0
+  - name: NPCs
+    uniqueID: 2431823809
+    locked: 0
+  - name: Gates
+    uniqueID: 808706707
+    locked: 0
