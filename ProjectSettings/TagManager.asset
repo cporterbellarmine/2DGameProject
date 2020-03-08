@@ -47,6 +47,9 @@ TagManager:
   - name: Water
     uniqueID: 2724096347
     locked: 0
+  - name: Buildings
+    uniqueID: 924837165
+    locked: 0
   - name: Gates
     uniqueID: 2742219667
     locked: 0
@@ -61,7 +64,4 @@ TagManager:
     locked: 0
   - name: MainHouse
     uniqueID: 2856611833
-    locked: 0
-  - name: Buildings
-    uniqueID: 924837165
     locked: 0
