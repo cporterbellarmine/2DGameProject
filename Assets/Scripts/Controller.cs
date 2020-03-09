@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
-{ 
+{
 
     //Any variables that do not have a value will be assigned
     //a textbox under the script in unity where you can edit the value.
@@ -22,6 +22,7 @@ public class Controller : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
+    private Animator animator;
 
 
 
@@ -29,7 +30,7 @@ public class Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); //Initializes the physics engine of your rigid body to the sprite
-
+        animator = GetComponent<Animator>();
     }//end Start
 
 
@@ -48,6 +49,36 @@ public class Controller : MonoBehaviour
 
         Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        {
+            animator.SetFloat("Speed", 0);
+        }
+
+        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
+        {
+            animator.SetFloat("Speed", speed);
+            ResetDirection();
+            animator.SetBool("East", true);
+        }
+        else if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
+        {
+            animator.SetFloat("Speed", speed);
+            ResetDirection();
+            animator.SetBool("West", true);
+        }
+        else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") > 0)
+        {
+            animator.SetFloat("Speed", speed);
+            ResetDirection();
+            animator.SetBool("North", true);
+        }
+        else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") < 0)
+        {
+            animator.SetFloat("Speed", speed);
+            ResetDirection();
+            animator.SetBool("South", true);
+        }
+
         /**
          * Here, we take our normal move vector and add a vector speed to it. However; an issue with this is that if we were to move diagonally,
          * like normal physics we would have a greater speed then we did moving side to side. Adding the normalized method fixes this and the
@@ -55,9 +86,18 @@ public class Controller : MonoBehaviour
          */
 
         moveVelocity = inputMovement.normalized * speed;
-        
+
+
+
     }//end Update
 
+    private void ResetDirection()
+    {
+        animator.SetBool("South", false);
+        animator.SetBool("North", false);
+        animator.SetBool("East", false);
+        animator.SetBool("West", false);
+    }
 
 
 
@@ -72,7 +112,7 @@ public class Controller : MonoBehaviour
          * keys.
          */
 
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime) ;
-        
+        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+
     }//end FixedUpdate
 }
