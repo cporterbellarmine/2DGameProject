@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TimeTracker : MonoBehaviour
 {
     private float totalSeconds; //represents how many seconds has passed since the game has started
     private float minutes; //represents the total minutes in game time
+    private string minutesDisplay;
     private float hours; //represents the total hours in game time
+    private string hoursDisplay;
     private float days; //represents the total days in game time.
+    public TextMeshProUGUI displayText;
 
     // Start is called before the first frame update
     void Start()
     {
+        displayText = GetComponent<TextMeshProUGUI>();
+
+        totalSeconds = 0;
 
     }//end start
 
@@ -24,13 +32,27 @@ public class TimeTracker : MonoBehaviour
         minutes = totalSeconds;
         hours = minutes / 60;
         days = hours / 24;
+
+        if((minutes % 60) < 10)
+        {
+            minutesDisplay = $"0{(int)minutes % 60}";
+        }
+        else
+        {
+            minutesDisplay = $"{(int)minutes % 60}";
+        }
+
+        if((hours % 24) < 10)
+        {
+            hoursDisplay = $"0{(int)hours % 24}";
+        }
+        else
+        {
+            hoursDisplay = $"{(int)hours % 24}";
+        }
+
+        displayText.text = $"Day {(int) days % 24} Time {hoursDisplay}:{minutesDisplay}";
         
     }//end update
 
-    private void OnGUI()
-    {
-        //This label appears in the top right corner while the game is running.
-        GUI.Label(new Rect(Screen.width - 100, 0, 100, 50), $"Day {(int)days%24} {(int)hours%60}:{(int)minutes%60}");
-
-    }//end ongui
 }

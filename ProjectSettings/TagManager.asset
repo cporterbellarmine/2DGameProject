@@ -38,9 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Ground
     uniqueID: 844278427
     locked: 0
@@ -64,4 +61,13 @@ TagManager:
     locked: 0
   - name: MainHouse
     uniqueID: 2856611833
+    locked: 0
+  - name: UI
+    uniqueID: 3147697963
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 1738746777
     locked: 0
