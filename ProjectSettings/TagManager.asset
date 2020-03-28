@@ -21,7 +21,7 @@ TagManager:
   - NPCs
   - MainHouse
   - Buildings
-  - 
+  - Trees and Lamps
   - 
   - 
   - 
@@ -70,4 +70,7 @@ TagManager:
     locked: 0
   - name: Gates
     uniqueID: 2742219667
+    locked: 0
+  - name: Lamps and Trees
+    uniqueID: 191017253
     locked: 0
