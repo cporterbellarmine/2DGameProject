@@ -49,35 +49,42 @@ public class Controller : MonoBehaviour
 
         Vector2 inputMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
-        {
-            animator.SetFloat("Speed", 0);
-        }
 
         if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") == 0)
         {
-            animator.SetFloat("Speed", speed);
-            ResetDirection();
-            animator.SetBool("East", true);
+            animator.SetFloat("IdleHorizontal", inputMovement.x);
+            animator.SetFloat("IdleVertical", inputMovement.y);
+            animator.SetFloat("Horizontal", inputMovement.x);
+            animator.SetFloat("Vertical", inputMovement.y);
         }
         else if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") == 0)
         {
-            animator.SetFloat("Speed", speed);
-            ResetDirection();
-            animator.SetBool("West", true);
+
+            animator.SetFloat("IdleHorizontal", inputMovement.x);
+            animator.SetFloat("IdleVertical", inputMovement.y);
+            animator.SetFloat("Horizontal", inputMovement.x);
+            animator.SetFloat("Vertical", inputMovement.y);
         }
         else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") > 0)
         {
-            animator.SetFloat("Speed", speed);
-            ResetDirection();
-            animator.SetBool("North", true);
+            animator.SetFloat("IdleHorizontal", inputMovement.x);
+            animator.SetFloat("IdleVertical", inputMovement.y);
+            animator.SetFloat("Horizontal", inputMovement.x);
+            animator.SetFloat("Vertical", inputMovement.y);
         }
         else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") < 0)
         {
-            animator.SetFloat("Speed", speed);
-            ResetDirection();
-            animator.SetBool("South", true);
+            animator.SetFloat("IdleHorizontal", inputMovement.x);
+            animator.SetFloat("IdleVertical", inputMovement.y);
+            animator.SetFloat("Horizontal", inputMovement.x);
+            animator.SetFloat("Vertical", inputMovement.y);
         }
+        else if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        {
+            animator.SetFloat("Horizontal", inputMovement.x);
+            animator.SetFloat("Vertical", inputMovement.y);
+        }
+        
 
         /**
          * Here, we take our normal move vector and add a vector speed to it. However; an issue with this is that if we were to move diagonally,
@@ -85,19 +92,15 @@ public class Controller : MonoBehaviour
          * speed is kept constant.
          */
 
+
+        animator.SetFloat("Speed", inputMovement.sqrMagnitude);
+        
         moveVelocity = inputMovement.normalized * speed;
 
 
 
     }//end Update
 
-    private void ResetDirection()
-    {
-        animator.SetBool("South", false);
-        animator.SetBool("North", false);
-        animator.SetBool("East", false);
-        animator.SetBool("West", false);
-    }
 
 
 
