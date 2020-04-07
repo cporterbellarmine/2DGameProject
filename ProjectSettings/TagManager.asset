@@ -21,7 +21,7 @@ TagManager:
   - NPCs
   - MainHouse
   - Buildings
-  - 
+  - Trees and Lamps
   - 
   - 
   - 
@@ -56,17 +56,8 @@ TagManager:
   - name: Buildings
     uniqueID: 924837165
     locked: 0
-  - name: Gates
-    uniqueID: 2742219667
-    locked: 0
   - name: MainHouseDoor
     uniqueID: 1654801841
-    locked: 0
-  - name: MainCharacter
-    uniqueID: 1046360185
-    locked: 0
-  - name: Walls
-    uniqueID: 3531294901
     locked: 0
   - name: NPCs
     uniqueID: 1196717531
@@ -76,4 +67,16 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3147697963
+    locked: 0
+  - name: MainCharacter
+    uniqueID: 1046360185
+    locked: 0
+  - name: Walls
+    uniqueID: 3531294901
+    locked: 0
+  - name: Gates
+    uniqueID: 2742219667
+    locked: 0
+  - name: Lamps and Trees
+    uniqueID: 191017253
     locked: 0
