@@ -21,7 +21,7 @@ TagManager:
   - NPCs
   - MainHouse
   - Buildings
-  - 
+  - Trees and Lamps
   - 
   - 
   - 
@@ -41,11 +41,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: New Layer
+    uniqueID: 1738746777
+    locked: 0
+  - name: New Layer
+    uniqueID: 1738746777
+    locked: 0
   - name: Ground
     uniqueID: 844278427
     locked: 0
   - name: Water
     uniqueID: 2724096347
+    locked: 0
+  - name: Bridges
+    uniqueID: 3445956811
+    locked: 0
+  - name: Bridges
+    uniqueID: 3445956811
     locked: 0
   - name: Buildings
     uniqueID: 924837165
@@ -53,15 +65,30 @@ TagManager:
   - name: Gates
     uniqueID: 2742219667
     locked: 0
+  - name: Lamps and Trees
+    uniqueID: 191017253
+    locked: 0
   - name: MainHouseDoor
     uniqueID: 1654801841
     locked: 0
   - name: MainCharacter
     uniqueID: 1046360185
     locked: 0
+  - name: Walls
+    uniqueID: 3531294901
+    locked: 0
+  - name: Walls
+    uniqueID: 3531294901
+    locked: 0
   - name: NPCs
     uniqueID: 1196717531
     locked: 0
   - name: MainHouse
     uniqueID: 2856611833
+    locked: 0
+  - name: UI
+    uniqueID: 3147697963
+    locked: 0
+  - name: UI
+    uniqueID: 3147697963
     locked: 0

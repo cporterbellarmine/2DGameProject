@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: MarketStallBlue
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 22f553e22c25b1c4a80606fda207a726, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4116c54d8b003449afbd320fa55562a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
