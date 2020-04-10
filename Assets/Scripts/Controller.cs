@@ -20,6 +20,11 @@ public class Controller : MonoBehaviour
     //a textbox under the script in unity where you can edit the value.
     public float speed;
 
+    //Health values
+    public int maxHealth = 15;
+    public int currentHealth;
+    public HealthBarScript healthBar;
+
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
     private Animator animator;
@@ -31,6 +36,10 @@ public class Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); //Initializes the physics engine of your rigid body to the sprite
         animator = GetComponent<Animator>();
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
     }//end Start
 
 
@@ -105,7 +114,7 @@ public class Controller : MonoBehaviour
 
 
     /**
-     * For this method, we are going to adjust the physics and actually move the characer.
+     * For this method, we are going to adjust the physics and actually move the character.
      */
     private void FixedUpdate()
     {
@@ -118,4 +127,12 @@ public class Controller : MonoBehaviour
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
 
     }//end FixedUpdate
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
+
+    }//end TakeDamage
 }
