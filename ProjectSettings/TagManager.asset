@@ -44,9 +44,6 @@ TagManager:
   - name: New Layer
     uniqueID: 1738746777
     locked: 0
-  - name: New Layer
-    uniqueID: 1738746777
-    locked: 0
   - name: Ground
     uniqueID: 844278427
     locked: 0
@@ -59,8 +56,17 @@ TagManager:
   - name: Bridges
     uniqueID: 3445956811
     locked: 0
+  - name: MainCharacter
+    uniqueID: 1046360185
+    locked: 0
   - name: Buildings
     uniqueID: 924837165
+    locked: 0
+  - name: NPCs
+    uniqueID: 1196717531
+    locked: 0
+  - name: New Layer
+    uniqueID: 1738746777
     locked: 0
   - name: Gates
     uniqueID: 2742219667
@@ -71,17 +77,11 @@ TagManager:
   - name: MainHouseDoor
     uniqueID: 1654801841
     locked: 0
-  - name: MainCharacter
-    uniqueID: 1046360185
-    locked: 0
   - name: Walls
     uniqueID: 3531294901
     locked: 0
   - name: Walls
     uniqueID: 3531294901
-    locked: 0
-  - name: NPCs
-    uniqueID: 1196717531
     locked: 0
   - name: MainHouse
     uniqueID: 2856611833
