@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class InteractionObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    bool stolenFrom = false;
+    public void DoSellInteraction(string name, int price)
     {
-        
+        if (stolenFrom == true)
+            price += 0;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IsStolenFrom()
     {
-        
+        stolenFrom = true;
     }
+
 }
