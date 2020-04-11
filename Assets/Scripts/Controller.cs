@@ -128,7 +128,7 @@ public class Controller : MonoBehaviour
 
     }//end FixedUpdate
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
