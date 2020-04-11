@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,9 +71,9 @@ public class Guard : MonoBehaviour
             if (taxChase == true)
             {
                 taxChase = false;
-                
+
                 script.gold -= fine(script);
-                script.hp -= taxDamage();
+                script.TakeDamage(taxDamage());
 
 
             }
@@ -81,7 +81,7 @@ public class Guard : MonoBehaviour
             {
                 criminalChase = false;
 
-                script.hp -= crimeDamage(script);
+                script.TakeDamage(crimeDamage(script));
                 script.inventory.clearStolenGoods();
                 GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating -= 20;
 
@@ -140,3 +140,4 @@ public class Guard : MonoBehaviour
     }
     
 }
+*/
