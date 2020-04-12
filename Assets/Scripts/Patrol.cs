@@ -32,6 +32,7 @@ public class Patrol : MonoBehaviour
     void Update()
     {
         movement = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
+        GameObject.Find("NPC").GetComponent<Animation>().movement = movement;
         transform.position = movement;
 
         if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
@@ -56,7 +57,7 @@ public class Patrol : MonoBehaviour
 
             }
         }
-
+/*
         deltaX = moveSpots[randomSpot].position.x - moveSpots[lastSpot].position.x;
         deltaY = moveSpots[randomSpot].position.y - moveSpots[lastSpot].position.y;
 
@@ -94,7 +95,7 @@ public class Patrol : MonoBehaviour
             animator.SetFloat("Horizontal", 0);
             animator.SetFloat("Vertical", 0);
         }
-
+        */
         
     }
 }
