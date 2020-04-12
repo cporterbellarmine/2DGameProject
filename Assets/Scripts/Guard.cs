@@ -15,8 +15,8 @@ public class Guard : MonoBehaviour
     //triggers
     private bool checkPlayer;
     private int criminalRating;
-    private bool taxOwed;
-    bool gracePeriod;
+
+    public bool gracePeriod = false;
     private bool taxCollected;
     private bool failedSteal;
     private bool taxChase;
@@ -28,13 +28,18 @@ public class Guard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        curfew = false;
+        checkPlayer = false;
+        taxCollected = false;
+        failedSteal = false;
+        taxChase = false;
+        criminalChase = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()           
     {
-        criminalRating = GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating;
+        criminalRating = Player.GetComponent<Controller>().criminalRating;
         if (taxChase == true || criminalChase == true)
         {
             transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
@@ -42,15 +47,18 @@ public class Guard : MonoBehaviour
             {
                 taxChase = false;
                 criminalChase = false;
+                checkPlayer = false;
             }
             
      
         }
         
+        
         if (Vector2.Distance(transform.position, Player.transform.position) < distance && checkPlayer == false)
         {
             checkPlayer = true;
-            if (taxOwed == true && taxCollected == true && gracePeriod == false)
+
+            if (GameObject.Find("TaxCollector").GetComponent<TaxCollector>().lateDue > 0 && taxCollected == false && gracePeriod == false)
             {
                 taxChase = true;
             }
@@ -59,6 +67,9 @@ public class Guard : MonoBehaviour
                 criminalChase = true;
             }
         }
+
+        curfew = GameObject.Find("Clock").AddComponent<TimeTracker>().curfew;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -74,21 +85,28 @@ public class Guard : MonoBehaviour
                 
                 script.gold -= fine(script);
                 script.hp -= taxDamage();
-
+                taxCollected = true;
 
             }
             else if(criminalChase == true)
             {
                 criminalChase = false;
 
-                script.hp -= crimeDamage(script);
-                script.inventory.clearStolenGoods();
-                GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating -= 20;
+                if(curfew == true)
+                {
+                    script.hp -= 10;
+                }
+                else{
+                    script.hp -= crimeDamage(script);
+                    script.inventory.clearStolenGoods();
+                    GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating = 0;
+                }
+                
 
 
 
             }
-            checkPlayer = true;
+            
         }
 
 
@@ -97,7 +115,7 @@ public class Guard : MonoBehaviour
 
     private int taxDamage()
     {
-        int damage = (int)System.Math.Ceiling((double)GameObject.Find("TaxCollector").GetComponent<TaxCollector>().fine * (.5+damageModified));
+        int damage = (int)System.Math.Ceiling((double)GameObject.Find("TaxCollector").GetComponent<TaxCollector>().lateDue * (.5+damageModified));
         
         return damage;
     }
@@ -110,13 +128,13 @@ public class Guard : MonoBehaviour
 
     private int fine(Controller script)
     {
-        int fine = GameObject.Find("TaxCollector").GetComponent<TaxCollector>().fine;
+        int fine = GameObject.Find("TaxCollector").GetComponent<TaxCollector>().lateDue;
         double denominator = (double)fine;
         double numerator = 0;
         if(fine > script.gold)
         {
-            GameObject.Find("TaxCollector").GetComponent<TaxCollector>().fine -= script.gold;
-            numerator = (double)GameObject.Find("TaxCollector").GetComponent<TaxCollector>().fine;
+            GameObject.Find("TaxCollector").GetComponent<TaxCollector>().lateDue -= script.gold;
+            numerator = (double)GameObject.Find("TaxCollector").GetComponent<TaxCollector>().lateDue;
             fine = script.gold;
            
             damageModifier(numerator / denominator);
@@ -124,7 +142,7 @@ public class Guard : MonoBehaviour
         else if(fine<= script.gold)
         {
             
-            GameObject.Find("TaxCollector").GetComponent<TaxCollector>().fine =0;
+            GameObject.Find("TaxCollector").GetComponent<TaxCollector>().lateDue =0;
             
         }
 

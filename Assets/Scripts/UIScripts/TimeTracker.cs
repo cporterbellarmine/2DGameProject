@@ -11,8 +11,9 @@ public class TimeTracker : MonoBehaviour
     private string minutesDisplay;
     private float hours; //represents the total hours in game time
     private string hoursDisplay;
-    private float days; //represents the total days in game time.
+    public float days; //represents the total days in game time.
     public TextMeshProUGUI displayText;
+    public bool curfew;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,8 @@ public class TimeTracker : MonoBehaviour
         displayText = GetComponent<TextMeshProUGUI>();
 
         totalSeconds = 0;
+
+        curfew = false;
 
     }//end start
 
@@ -52,7 +55,15 @@ public class TimeTracker : MonoBehaviour
         }
 
         displayText.text = $"Day {(int) days % 24} Time {hoursDisplay}:{minutesDisplay}";
-        
+
+        if (hoursDisplay == "22")
+        {
+            curfew = true;
+        }
+        else if (hoursDisplay == "06")
+        {
+            curfew = false;
+        }
     }//end update
 
 }
