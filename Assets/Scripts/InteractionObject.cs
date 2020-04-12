@@ -6,8 +6,8 @@ using UnityEngine;
 public class InteractionObject : MonoBehaviour
 {
     bool stolenFrom = false;
-
     public Canvas messageCanvas;
+
     private void Start()
     {
         messageCanvas.enabled = false;
@@ -15,6 +15,8 @@ public class InteractionObject : MonoBehaviour
 
     public void DoSellInteraction(string[] item)
     {
+        messageCanvas.enabled = true;
+
         string itemName = item[1];
         double itemPrice = Convert.ToDouble(item[2]);
 
@@ -26,6 +28,11 @@ public class InteractionObject : MonoBehaviour
     public void IsStolenFrom()
     {
         stolenFrom = true;
+    }
+
+    public void LeaveInteraction()
+    {
+
     }
     
 }

@@ -5,13 +5,22 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     GameObject currentInterObj = null;
-    //string[] item;
     private void Update()
+    {
+        if (Input.GetButtonDown("Interact") && currentInterObj)
+        {
+          
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         string[] item = new string[2];
 
-        if (Input.GetButtonDown("Interact") && currentInterObj)
+        if (collision.CompareTag("Interactible"))
         {
+            currentInterObj = collision.gameObject;
+
             if (currentInterObj.name == "BreadStall")
             {
                 item[0] = "bread";
@@ -84,23 +93,16 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Interactible"))
-        {
-            Debug.Log(collision.name);
-            currentInterObj = collision.gameObject;
-        }
-    }
-
     void OnTriggerExit2D(Collider other)
     {
         if (other.CompareTag("Interactible"))
         {
             if (other.gameObject == currentInterObj)
             {
+                currentInterObj.SendMessage("LeaveInteraction");
                 currentInterObj = null;
             }
+
         }
     }
 }
