@@ -5,41 +5,85 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     GameObject currentInterObj = null;
-
+    //string[] item;
     private void Update()
     {
+        string[] item = new string[2];
+
         if (Input.GetButtonDown("Interact") && currentInterObj)
         {
-            if(currentInterObj.name == "BreadStall")
-                currentInterObj.SendMessage("DoSellInteraction", "bread", );
+            if (currentInterObj.name == "BreadStall")
+            {
+                item[0] = "bread";
+                item[1] = "15.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "BeetStall")
-                currentInterObj.SendMessage("DoSellInteraction", "beet", );
+            {
+                item[0] = "beets";
+                item[1] = "5.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "AppleStall")
-                currentInterObj.SendMessage("DoSellInteraction", "apple", );
+            {
+                item[0] = "apples";
+                item[1] = "8.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "CarrotStall")
-                currentInterObj.SendMessage("DoSellInteraction", "carrot", );
+            {
+                item[0] = "carrots";
+                item[1] = "6.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "BananaStall")
-                currentInterObj.SendMessage("DoSellInteraction", "banana", );
+            {
+                item[0] = "bananas";
+                item[1] = "7.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "PeaStall")
-                currentInterObj.SendMessage("DoSellInteraction", "pea", );
+            {
+                item[0] = "peass";
+                item[1] = "2.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "PepperStall")
-                currentInterObj.SendMessage("DoSellInteraction", "pepper", );
+            {
+                item[0] = "peppers";
+                item[1] = "3.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "BookStall")
-                currentInterObj.SendMessage("DoSellInteraction", "book", );
+            {
+                item[0] = "books";
+                item[1] = "100.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "OrangeStall")
-                currentInterObj.SendMessage("DoSellInteraction", "orange", );
+            {
+                item[0] = "oranges";
+                item[1] = "7.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
 
             if (currentInterObj.name == "CornStall")
-                currentInterObj.SendMessage("DoSellInteraction", "corn", );
+            {
+                item[0] = "corn";
+                item[1] = "11.0";
+                currentInterObj.SendMessage("DoSellInteraction", item);
+            }
         }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Interactible"))
