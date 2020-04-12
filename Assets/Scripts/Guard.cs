@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -82,16 +82,22 @@ public class Guard : MonoBehaviour
             if (taxChase == true)
             {
                 taxChase = false;
-                
+
                 script.gold -= fine(script);
+<<<<<<< HEAD
                 script.hp -= taxDamage();
                 taxCollected = true;
+=======
+                script.TakeDamage(taxDamage());
+
+>>>>>>> 2664bad00e965e54770d6df3ea53e42f2cdee866
 
             }
             else if(criminalChase == true)
             {
                 criminalChase = false;
 
+<<<<<<< HEAD
                 if(curfew == true)
                 {
                     script.hp -= 10;
@@ -102,6 +108,11 @@ public class Guard : MonoBehaviour
                     GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating = 0;
                 }
                 
+=======
+                script.TakeDamage(crimeDamage(script));
+                script.inventory.clearStolenGoods();
+                GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating -= 20;
+>>>>>>> 2664bad00e965e54770d6df3ea53e42f2cdee866
 
 
 
@@ -156,4 +167,6 @@ public class Guard : MonoBehaviour
 
         return damage;
     }
+    
 }
+*/
