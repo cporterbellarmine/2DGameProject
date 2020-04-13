@@ -1,4 +1,4 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,6 +68,11 @@ public class Guard : MonoBehaviour
             }
         }
 
+        if (GameObject.Find("Clock").AddComponent<TimeTracker>().hoursDisplay == "06")
+        {
+            taxCollected = false;
+        }
+
         curfew = GameObject.Find("Clock").AddComponent<TimeTracker>().curfew;
         
     }
@@ -84,35 +89,31 @@ public class Guard : MonoBehaviour
                 taxChase = false;
 
                 script.gold -= fine(script);
-<<<<<<< HEAD
+
                 script.hp -= taxDamage();
                 taxCollected = true;
-=======
+
                 script.TakeDamage(taxDamage());
 
->>>>>>> 2664bad00e965e54770d6df3ea53e42f2cdee866
+
 
             }
             else if(criminalChase == true)
             {
                 criminalChase = false;
 
-<<<<<<< HEAD
+
                 if(curfew == true)
                 {
                     script.hp -= 10;
                 }
                 else{
-                    script.hp -= crimeDamage(script);
+                    script.TakeDamage(crimeDamage(script));
                     script.inventory.clearStolenGoods();
-                    GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating = 0;
+                    script.GetComponent<Controller>().criminalRating = 0;
                 }
-                
-=======
-                script.TakeDamage(crimeDamage(script));
-                script.inventory.clearStolenGoods();
-                GameObject.Find("TaxCollector").GetComponent<TaxCollector>().criminalRating -= 20;
->>>>>>> 2664bad00e965e54770d6df3ea53e42f2cdee866
+               
+
 
 
 
@@ -169,4 +170,3 @@ public class Guard : MonoBehaviour
     }
     
 }
-*/

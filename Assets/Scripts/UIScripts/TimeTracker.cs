@@ -10,7 +10,7 @@ public class TimeTracker : MonoBehaviour
     private float minutes; //represents the total minutes in game time
     private string minutesDisplay;
     private float hours; //represents the total hours in game time
-    private string hoursDisplay;
+    public string hoursDisplay;
     public float days; //represents the total days in game time.
     public TextMeshProUGUI displayText;
     public bool curfew;

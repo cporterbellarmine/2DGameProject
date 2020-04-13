@@ -21,13 +21,16 @@ public class Controller : MonoBehaviour
     public float speed;
 
     //Health values
-    public int maxHealth = 15;
+    public int maxHealth = 100;
     public int currentHealth;
     public HealthBarScript healthBar;
 
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
     private Animator animator;
+
+    public int gold;
+   
 
 
 
@@ -135,4 +138,6 @@ public class Controller : MonoBehaviour
         healthBar.SetHealth(currentHealth);
 
     }//end TakeDamage
+
+
 }
