@@ -24,7 +24,9 @@ public class Controller : MonoBehaviour
     private float totalHours;
 
     //Health values
-    public int maxHealth = 20;
+
+    public int maxHealth = 100;
+
     public int currentHealth;
     public HealthBarScript healthBar;
 
@@ -35,6 +37,9 @@ public class Controller : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
     private Animator animator;
+
+    public int gold;
+   
 
 
 
@@ -158,10 +163,11 @@ public class Controller : MonoBehaviour
 
     }//end TakeDamage
 
+
     public void GetHungrier(int amt)
     {
         currentFood -= amt;
         foodBar.SetFood(currentFood);
-
     }
+        
 }
