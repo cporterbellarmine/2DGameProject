@@ -7,6 +7,7 @@ public class InteractionObject : MonoBehaviour
 {
     bool stolenFrom = false;
     public Canvas messageCanvas;
+    
 
     private void Start()
     {
@@ -22,7 +23,28 @@ public class InteractionObject : MonoBehaviour
 
         double increase = itemPrice * .1;
         if (stolenFrom == true)
+        {
             itemPrice += increase;
+            Math.Ceiling(itemPrice);
+        }
+
+        Convert.ToInt32(itemPrice);
+
+        if (Input.GetButtonDown("Interact"))
+        {
+            if(moneyVariable >= itemPrice)
+            {
+                moneyVariable -= itemPrice;
+                Inventory.NextSlot(itemName);
+                //show item in inventory
+
+            }
+
+            else
+            {
+
+            }
+        }
     }
 
     public void IsStolenFrom()

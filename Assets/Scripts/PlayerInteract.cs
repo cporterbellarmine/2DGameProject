@@ -7,10 +7,7 @@ public class PlayerInteract : MonoBehaviour
     GameObject currentInterObj = null;
     private void Update()
     {
-        if (Input.GetButtonDown("Interact") && currentInterObj)
-        {
-          
-        }
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
