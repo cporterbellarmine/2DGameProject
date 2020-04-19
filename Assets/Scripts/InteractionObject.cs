@@ -7,7 +7,7 @@ public class InteractionObject : MonoBehaviour
 {
     bool stolenFrom = false;
     public Canvas messageCanvas;
-    
+    int time = Convert.ToInt32(GameObject.Find("Time").GetComponent<TimeTracker>().hoursDisplay);
 
     private void Start()
     {
@@ -65,7 +65,6 @@ public class InteractionObject : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             GameObject.Find("Character").GetComponent<PlayerInteract>().jobDone = true;
-            int time = Convert.ToInt32(GameObject.Find("Time").GetComponent<TimeTracker>().hoursDisplay);
 
             if (time == 22)
             {
@@ -81,15 +80,15 @@ public class InteractionObject : MonoBehaviour
 
                 if(time < 22 && time > 6)
                 {
-                    messageCanvas.SendMessage("FadeImage", false);
-                    GameObject.Find("Time").GetComponent<TimeTracker>().hours += 1;
+                    messageCanvas.SendMessage("FadeImage", "false");
+                    GameObject.Find("Time").GetComponent<TimeTracker>().addedTime += 60;
                     hoursPassed += 1;
                 }
 
                 messageCanvas.enabled = false;
                 fullPay = hoursPassed * hourPay;
                 Inventory.MoneyValue += fullPay;
-                messageCanvas.SendMessage("FadeImage", true);
+                messageCanvas.SendMessage("FadeImage", "true");
             }
 
         }
@@ -99,11 +98,31 @@ public class InteractionObject : MonoBehaviour
     void SleepInteract()
     {
         messageCanvas.enabled = true;
+        string status = GameObject.Find("Character").GetComponent<PlayerInteract>().playerStatus;
 
-        if(Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Interact"))
         {
             messageCanvas.SendMessage("FadeImage", "true");
-            if()
+
+            if (Inventory.MoneyValue > && status == "townfolk")
+            {
+                GameObject.Find("Character").GetComponent<PlayerInteract>().playerStatus = "fancylad";
+            }
+
+            if (Inventory.MoneyValue > && status == "pleb")
+            {
+                GameObject.Find("Character").GetComponent<PlayerInteract>().playerStatus = "townfolk";
+            }
+
+            while (time != 6)
+            {
+                GameObject.Find("Time").GetComponent<TimeTracker>().addedTime += 60;
+                FoodPoints -= 1;
+            }
+
+            messageCanvas.SendMessage("FadeImage", "false");
+
         }
+
     }
 }

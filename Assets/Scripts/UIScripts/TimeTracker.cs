@@ -14,6 +14,7 @@ public class TimeTracker : MonoBehaviour
     public float days; //represents the total days in game time.
     public TextMeshProUGUI displayText;
     public bool curfew;
+    public int addedTime;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class TimeTracker : MonoBehaviour
 
         curfew = false;
 
+        addedTime = 0;
+
     }//end start
 
     // Update is called once per frame
@@ -32,7 +35,7 @@ public class TimeTracker : MonoBehaviour
         totalSeconds = Time.fixedTime;
 
         //We want each second to be one minute in this game.
-        minutes = totalSeconds;
+        minutes = addedTime + totalSeconds;
         hours = minutes / 60;
         days = hours / 24;
 
