@@ -9,7 +9,7 @@ public class TimeTracker : MonoBehaviour
     private float totalSeconds; //represents how many seconds has passed since the game has started
     private float minutes; //represents the total minutes in game time
     private string minutesDisplay;
-    private float hours; //represents the total hours in game time
+    public float hours; //represents the total hours in game time
     public string hoursDisplay;
     public float days; //represents the total days in game time.
     public TextMeshProUGUI displayText;

@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Interactible
   - Market Item
+  - Level0Job
+  - Level1Job
+  - Level2Job
+  - Level0House
+  - Level1House
+  - Level2House
   layers:
   - Default
   - TransparentFX
@@ -24,7 +30,7 @@ TagManager:
   - MainHouse
   - Buildings
   - Trees and Lamps
-  - 
+  - Fade
   - 
   - 
   - 

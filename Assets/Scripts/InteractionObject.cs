@@ -42,8 +42,8 @@ public class InteractionObject : MonoBehaviour
 
             else
             {
-
-            }
+                
+            } 
         }
     }
 
@@ -56,5 +56,53 @@ public class InteractionObject : MonoBehaviour
     {
 
     }
-    
+
+    public void JobInteraction(int[] job)
+    {
+        int hoursPassed = 0;
+        int fullPay = 0;
+
+        if (Input.GetButtonDown("Interact"))
+        {
+            int time = Convert.ToInt32(GameObject.Find("Time").GetComponent<TimeTracker>().hoursDisplay);
+
+            if (time == 22)
+            {
+                messageCanvas.enabled = false;
+            }
+
+            else
+            {
+                messageCanvas.enabled = true;
+
+                int maxHours = job[0];
+                int hourPay = job[1];
+
+                if(time < 22 && time > 6)
+                {
+                    messageCanvas.SendMessage("FadeImage", false);
+                    GameObject.Find("Time").GetComponent<TimeTracker>().hours += 1;
+                    hoursPassed += 1;
+                }
+
+                messageCanvas.enabled = false;
+                fullPay = hoursPassed * hourPay;
+                Inventory.MoneyValue += fullPay;
+                messageCanvas.SendMessage("FadeImage", true);
+            }
+
+        }
+
+    }
+
+    void SleepInteract()
+    {
+        messageCanvas.enabled = true;
+
+        if(Input.GetButtonDown("Interact"))
+        {
+            messageCanvas.SendMessage("FadeImage", "true");
+            if()
+        }
+    }
 }
