@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     GameObject currentInterObj = null;
-    string playerStatus = "pleb";
-    string currentJob = null;
+    public string playerStatus = "pleb";
+    public string currentJob = null;
+    public bool jobDone = false;
     
     private void Update()
     {
-
+        if (GameObject.Find("Time").GetComponent<TimeTracker>().curfew == true)
+            jobDone = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -94,55 +96,58 @@ public class PlayerInteract : MonoBehaviour
 
         }
 
-        if(collision.CompareTag("Level0Job"))
+        if(jobDone == false)
         {
-            if(playerStatus == "pleb")
+            if (collision.CompareTag("Level0Job"))
             {
-                if(currentInterObj.name == "JobFarmRight" || currentInterObj.name == "JobFarmLeft")
+                if (playerStatus == "pleb")
                 {
-                    job[0] = 6;
-                    job[1] = 10;
-                    currentInterObj.SendMessage("DoJobInteraction", "job");
+                    if (currentInterObj.name == "JobFarmRight" || currentInterObj.name == "JobFarmLeft")
+                    {
+                        job[0] = 6;
+                        job[1] = 10;
+                        currentInterObj.SendMessage("DoJobInteraction", "job");
+                    }
                 }
             }
-        }
 
-        if (collision.CompareTag("Level1Job"))
-        {
-            if(playerStatus == "townfolk")
+            if (collision.CompareTag("Level1Job"))
             {
-                if (currentInterObj.name == "JobBlacksmith")
+                if (playerStatus == "townfolk")
                 {
-                    job[0] = 7;
-                    job[1] = 10;
-                    currentInterObj.SendMessage("DoJobInteraction", "job");
-                }
+                    if (currentInterObj.name == "JobBlacksmith")
+                    {
+                        job[0] = 7;
+                        job[1] = 10;
+                        currentInterObj.SendMessage("DoJobInteraction", "job");
+                    }
 
-                if (currentInterObj.name == "JobTailor")
-                {
-                    job[0] = 9;
-                    job[1] = 7;
-                    currentInterObj.SendMessage("DoJobInteraction", "job");
+                    if (currentInterObj.name == "JobTailor")
+                    {
+                        job[0] = 9;
+                        job[1] = 7;
+                        currentInterObj.SendMessage("DoJobInteraction", "job");
+                    }
                 }
             }
-        }
 
-        if (collision.CompareTag("Level2Job"))
-        {
-            if (playerStatus == "fancylad")
+            if (collision.CompareTag("Level2Job"))
             {
-                if (currentInterObj.name == "JobMerchent")
+                if (playerStatus == "fancylad")
                 {
-                    job[0] = 10;
-                    job[1] = 9;
-                    currentInterObj.SendMessage("DoJobInteraction", "job");
-                }
+                    if (currentInterObj.name == "JobMerchent")
+                    {
+                        job[0] = 10;
+                        job[1] = 9;
+                        currentInterObj.SendMessage("DoJobInteraction", "job");
+                    }
 
-                if (currentInterObj.name == "JobTrader")
-                {
-                    job[0] = 11;
-                    job[1] = 8;
-                    currentInterObj.SendMessage("DoJobInteraction", "job");
+                    if (currentInterObj.name == "JobTrader")
+                    {
+                        job[0] = 11;
+                        job[1] = 8;
+                        currentInterObj.SendMessage("DoJobInteraction", "job");
+                    }
                 }
             }
         }

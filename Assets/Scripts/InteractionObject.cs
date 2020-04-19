@@ -64,6 +64,7 @@ public class InteractionObject : MonoBehaviour
 
         if (Input.GetButtonDown("Interact"))
         {
+            GameObject.Find("Character").GetComponent<PlayerInteract>().jobDone = true;
             int time = Convert.ToInt32(GameObject.Find("Time").GetComponent<TimeTracker>().hoursDisplay);
 
             if (time == 22)
