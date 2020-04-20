@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
 
-    private int lumpSum;
+   /* private int lumpSum;
     public int lateDue;
     public int currentDue;
     public int lateInterest;
@@ -61,5 +61,5 @@ public class NewBehaviourScript : MonoBehaviour
        
 
 
-    }
+    } */
 }

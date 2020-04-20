@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Guard : MonoBehaviour
 {
-    private GameObject Player = GameObject.Find("Character");
+   /* private GameObject Player = GameObject.Find("Character");
     private Vector2 movement;
     public float speed;
     public float distance;
@@ -167,6 +167,6 @@ public class Guard : MonoBehaviour
         int damage = (int)System.Math.Ceiling((double)script.stolenGoodsValue() * .5);
 
         return damage;
-    }
+    } */
     
 } 

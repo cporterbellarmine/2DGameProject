@@ -59,7 +59,7 @@ public class debtCollector : MonoBehaviour
             if (rentChase == true)
             {
                 rentChase = false;
-                script.hp -= rentDamage();
+                //script.hp -= rentDamage();
                 rentCollected = true;
 
             }
