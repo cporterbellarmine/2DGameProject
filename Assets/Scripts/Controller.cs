@@ -19,10 +19,27 @@ public class Controller : MonoBehaviour
     //Any variables that do not have a value will be assigned
     //a textbox under the script in unity where you can edit the value.
     public float speed;
+    private float totalSeconds;
+    private float hours;
+    private float totalHours;
+
+    //Health values
+
+    public int maxHealth = 100;
+
+    public int currentHealth;
+    public HealthBarScript healthBar;
+
+    public int maxFood = 50;
+    public int currentFood;
+    public FoodBarScript foodBar;
 
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
     private Animator animator;
+
+    public int gold;
+   
 
 
 
@@ -31,6 +48,13 @@ public class Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); //Initializes the physics engine of your rigid body to the sprite
         animator = GetComponent<Animator>();
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        currentFood = maxFood;
+        foodBar.SetMaxFood(maxFood);
+
     }//end Start
 
 
@@ -84,7 +108,7 @@ public class Controller : MonoBehaviour
             animator.SetFloat("Horizontal", inputMovement.x);
             animator.SetFloat("Vertical", inputMovement.y);
         }
-        
+
 
         /**
          * Here, we take our normal move vector and add a vector speed to it. However; an issue with this is that if we were to move diagonally,
@@ -92,11 +116,23 @@ public class Controller : MonoBehaviour
          * speed is kept constant.
          */
 
-
         animator.SetFloat("Speed", inputMovement.sqrMagnitude);
         
         moveVelocity = inputMovement.normalized * speed;
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(2);
+        }
+
+        totalSeconds = Time.fixedTime;
+
+        hours = totalSeconds / 60;
+
+        if(hours == 5 || hours == 10 || hours == 15 || hours == 20)
+        {
+            GetHungrier(5);
+        }
 
 
     }//end Update
@@ -105,7 +141,7 @@ public class Controller : MonoBehaviour
 
 
     /**
-     * For this method, we are going to adjust the physics and actually move the characer.
+     * For this method, we are going to adjust the physics and actually move the character.
      */
     private void FixedUpdate()
     {
@@ -118,4 +154,20 @@ public class Controller : MonoBehaviour
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
 
     }//end FixedUpdate
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
+
+    }//end TakeDamage
+
+
+    public void GetHungrier(int amt)
+    {
+        currentFood -= amt;
+        foodBar.SetFood(currentFood);
+    }
+        
 }
