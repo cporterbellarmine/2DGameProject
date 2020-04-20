@@ -7,10 +7,26 @@ public class InteractionObject : MonoBehaviour
 {
     bool stolenFrom = false;
     public Canvas messageCanvas;
+    public GameObject prefab;
+    bool buttonPressed = false;
+    public Fade fade;
+    MoneyScript moneyScript;
 
     private void Start()
     {
         messageCanvas.enabled = false;
+        fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Interact"))
+            buttonPressed = true;
+        else
+            buttonPressed = false;
+
+        moneyScript = GameObject.Find("MoneyBorder").GetComponent<MoneyScript>();
+      
     }
 
     public void DoSellInteraction(string[] item)
@@ -19,25 +35,21 @@ public class InteractionObject : MonoBehaviour
         int money = GameObject.Find("Character").GetComponent<MoneyScript>().money;
 
         string itemName = item[1];
-        double itemPrice = Convert.ToDouble(item[2]);
+        int itemPrice = Convert.ToInt32(item[2]);
 
         double increase = itemPrice * .1;
         if (stolenFrom == true)
         {
-            itemPrice += increase;
-            Math.Ceiling(itemPrice);
+            Math.Ceiling(increase);
+            itemPrice += Convert.ToInt32(increase);
         }
-
-        Convert.ToInt32(itemPrice);
 
         if (Input.GetButtonDown("Interact"))
         {
             if(money >= itemPrice)
             {
-                SendMessage("SubtractMoney", "itemPrice");
-                //Inventory.NextSlot(itemName);
-                //show item in inventory
-
+                moneyScript.SubtractMoney(itemPrice);
+                Instantiate(prefab, GameObject.Find("Character").transform.position, Quaternion.identity);
             }
 
             else
@@ -61,9 +73,7 @@ public class InteractionObject : MonoBehaviour
     {
         Console.WriteLine("Job Interaqction");
         int hoursPassed = 0;
-        int fullPay = 0;
         int time = Convert.ToInt32(GameObject.Find("Time").GetComponent<TimeTracker>().hoursDisplay);
-        int money = GameObject.Find("Character").GetComponent<MoneyScript>().money;
         int maxHours = job[0];
         int hourPay = job[1];
 
@@ -74,20 +84,23 @@ public class InteractionObject : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 GameObject.Find("Character").GetComponent<PlayerInteract>().jobDone = true;
-                messageCanvas.SendMessage("FadeImage", "false");
+                fade.FadeImage(false);
 
                 while (time < 22 && time > 6)
                 {
-                    GameObject.Find("Time").GetComponent<TimeTracker>().addedTime += 60;
-                    hoursPassed += 1;
-                    //FoodPoints -= 2;
+                    if (hoursPassed <= maxHours)
+                    {
+                        GameObject.Find("Time").GetComponent<TimeTracker>().addedTime += 60;
+                        hoursPassed += 1;
+                        //FoodPoints -= 2;
+                    }
                 }
             }
 
             messageCanvas.enabled = false;
-            fullPay = hoursPassed * hourPay;
-            SendMessage("AddMoney", "fullPay");
-            SendMessage("FadeImage", "true");
+            int fullPay = hoursPassed * hourPay;
+           // moneyScript.AddMoney(fullPay);
+            fade.FadeImage(true);
         }
 
         else
@@ -97,20 +110,20 @@ public class InteractionObject : MonoBehaviour
 
     }
 
-    void DoSleepInteraction()
+    public void DoSleepInteraction()
     {
         messageCanvas.enabled = true;
         string status = GameObject.Find("Character").GetComponent<PlayerInteract>().playerStatus;
         int time = Convert.ToInt32(GameObject.Find("Time").GetComponent<TimeTracker>().hoursDisplay);
-        int money = GameObject.Find("Character").GetComponent<MoneyScript>().money;
+        int money = 1;// GameObject.Find("Character").GetComponent<MoneyScript>().money;
 
-        if (Input.GetButtonDown("Interact"))
+        if (buttonPressed)
         {
-            messageCanvas.SendMessage("FadeImage", "false");
+            fade.FadeImage(false);
 
             if (money > 100000 && status == "fancylad")
             {
-                //win
+                GameObject.Find("Character").GetComponent<PlayerInteract>().possibleStatus = "noble";
             }
 
             if (money > 10000 && status == "townfolk")
@@ -126,10 +139,10 @@ public class InteractionObject : MonoBehaviour
             while (time != 6)
             {
                 GameObject.Find("Time").GetComponent<TimeTracker>().addedTime += 60;
-               // FoodPoints -= 1;
+                // FoodPoints -= 1;
             }
 
-            messageCanvas.SendMessage("FadeImage", "true");
+            fade.FadeImage(true);
 
         }
 

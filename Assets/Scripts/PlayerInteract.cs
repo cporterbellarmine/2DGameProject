@@ -20,7 +20,6 @@ public class PlayerInteract : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Job Check, " + currentInterObj.tag + ", " + currentInterObj.name);
         string[] item = new string[2];
         int[] job = new int[2];
        
@@ -114,7 +113,7 @@ public class PlayerInteract : MonoBehaviour
                         {
                             job[0] = 6;
                             job[1] = 10;
-                            currentInterObj.SendMessage("DoJobInteraction", "job");
+                            currentInterObj.SendMessage("DoJobInteraction", job);
                         }
                     }
                }
@@ -127,14 +126,14 @@ public class PlayerInteract : MonoBehaviour
                         {
                             job[0] = 7;
                             job[1] = 10;
-                            currentInterObj.SendMessage("DoJobInteraction", "job");
+                            currentInterObj.SendMessage("DoJobInteraction", job);
                         }
 
                         if (currentInterObj.name == "JobTailor")
                         {
                             job[0] = 9;
                             job[1] = 7;
-                            currentInterObj.SendMessage("DoJobInteraction", "job");
+                            currentInterObj.SendMessage("DoJobInteraction", job);
                         }
                     }
                 }
@@ -147,14 +146,14 @@ public class PlayerInteract : MonoBehaviour
                         {
                             job[0] = 10;
                             job[1] = 9;
-                            currentInterObj.SendMessage("DoJobInteraction", "job");
+                            currentInterObj.SendMessage("DoJobInteraction", job);
                         }
 
                         if (currentInterObj.name == "JobTrader")
                         {
                             job[0] = 11;
                             job[1] = 8;
-                            currentInterObj.SendMessage("DoJobInteraction", "job");
+                            currentInterObj.SendMessage("DoJobInteraction", job);
                         }
                     }
                 }
